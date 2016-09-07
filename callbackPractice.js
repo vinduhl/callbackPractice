@@ -25,7 +25,9 @@ and what you should write is the sayHi function that makes the code above work,
 
   //Code Here for first
 var first = function(arr, cb) {
-  cb(arr[0]);  
+  if(arr && Array.isArray(arr) && typeof cb === "function") {
+    cb(arr[0]);
+  }
 }
 
 
@@ -41,7 +43,9 @@ first(names, function(firstName){
 
   //Code Here for last
 var last = function(arr, cb) {
-  cb(arr[arr.length - 1]);
+  if(arr && Array.isArray(arr) && arr.length > 0 && typeof cb === "function") {
+    cb(arr[arr.length - 1]);
+  }
 }
 
 last(names, function(lastName){
@@ -57,7 +61,9 @@ last(names, function(lastName){
 
   //Code Here for multiply
 var multiply = function(num1, num2, cb) {
-  cb(num1 * num2);
+  if(typeof cb === "function") {
+    cb(num1 * num2);  
+  }
 }
 
 multiply(4, 3, function(answer){
@@ -95,12 +101,19 @@ contains(names, 'Colt', function(result){
 
     //Code Here for uniq
 var uniq = function(arr, cb) {
-  for(var i = arr.length - 1; i >= 0; i--) {
-    if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])) {
-      arr.splice(i, 1);
-    }
-  } 
-  cb(arr); 
+  if(arr && Array.isArray(arr)) {
+    for(var i = arr.length - 1; i >= 0; i--) {
+      if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])) {
+        arr.splice(i, 1);
+      }
+    }  
+  }
+   
+
+  if(typeof cb === "function") {
+    cb(arr);  
+  }
+   
 }
 
 uniq(names, function(uniqArr){
@@ -117,6 +130,14 @@ uniq(names, function(uniqArr){
 
 
     //Code Here for each
+var each = function(arr, cb) {
+  if(arr && Array.isArray(arr) && typeof cb === "function") {
+    for(var i = 0; i < arr.length; i++) {
+      cb(arr[i], i);  
+    }
+      
+  }
+}
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
@@ -133,6 +154,18 @@ each(names, function(item, indice){
 
 
  //code here for getUserById
+
+var getUserById = function(arr, userIdToSearch, cb) {
+  if(arr && Array.isArray(arr) && typeof cb === "function") {
+    for(var i = 0 ; i < arr.length; i++) {
+      var user = arr[i];
+      if(user.id === userIdToSearch) {
+        cb(user);
+        break;
+      }
+    }
+  }
+}
 
 var users = [
   {
