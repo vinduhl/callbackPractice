@@ -23,9 +23,11 @@ and what you should write is the sayHi function that makes the code above work,
 */
 
 
-
   //Code Here for first
-  
+var first = function(arr, cb) {
+  cb(arr[0]);  
+}
+
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -37,9 +39,10 @@ first(names, function(firstName){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
   //Code Here for last
+var last = function(arr, cb) {
+  cb(arr[arr.length - 1]);
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -52,11 +55,10 @@ last(names, function(lastName){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
-
-
   //Code Here for multiply
+var multiply = function(num1, num2, cb) {
+  cb(num1 * num2);
+}
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -69,10 +71,12 @@ multiply(4, 3, function(answer){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
-
   //Code Here for contains
+var contains = function(arr, stringToFind, cb) {
+  if(arr && Array.isArray(arr)) {
+    cb(arr.indexOf(stringToFind) !== -1); 
+  }
+}
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -89,9 +93,15 @@ contains(names, 'Colt', function(result){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
     //Code Here for uniq
+var uniq = function(arr, cb) {
+  for(var i = arr.length - 1; i >= 0; i--) {
+    if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])) {
+      arr.splice(i, 1);
+    }
+  } 
+  cb(arr); 
+}
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
